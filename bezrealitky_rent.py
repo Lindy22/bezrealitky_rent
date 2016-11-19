@@ -30,7 +30,7 @@ httpcon = urllib3.PoolManager()
 price_reg = re.compile('([0-9]{1,3}.[0-9]{3})+')
 pagination_reg = re.compile('([0-9]{1,3})+')
 surface_room_reg = re.compile('([[0-9]{1}\+[0-9]{1}|[[0-9]{1}\+kk)+')
-surface_flat_reg = re.compile('([0-9]{1,3})+')
+surface_flat_reg = re.compile('([0-9]{2,3})+')
 pager_bezrealitky="&page={}"
 pager_sreality="&strana={}"
 price_big = 23000
@@ -156,8 +156,8 @@ def get_flats_bezrealitky(httpcon,main_url,old_advert_list,price_threshold,quart
         page_cnt = 1
         
     for page in range(page_cnt):
-        flat_list=p.xpath(u'body//div[@class="record highlight ng-hide"]')
-        flat_list2=p.xpath(u'body//div[@class="record  ng-hide"]')
+        flat_list=p.xpath(u'body//div[@class="record highlight"]')
+        flat_list2=p.xpath(u'body//div[@class="record "]')
         flat_list = flat_list + flat_list2
         for r in flat_list:
             title_xpath = r.xpath('div[@class="details"]/h2/a/text()')
